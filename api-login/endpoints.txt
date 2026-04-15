@@ -1,0 +1,19 @@
+API DE AUTENTICACIÓN
+
+1. REGISTRO
+Método: POST
+URL: http://localhost:3001/registro
+Body:
+{
+  "email": "string",
+  "password": "string"
+}
+
+2. LOGIN
+Método: POST
+URL: http://localhost:3001/login
+Body:
+{
+  "email": "string",
+  "password": "string"
+}
