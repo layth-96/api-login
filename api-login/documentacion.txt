@@ -1,0 +1,57 @@
+API TIENDA ONLINE
+
+1. USUARIOS
+
+POST /registro
+Descripción: Permite registrar un nuevo usuario
+Body:
+{
+  "email": "string",
+  "password": "string"
+}
+
+POST /login
+Descripción: Permite autenticar un usuario
+Body:
+{
+  "email": "string",
+  "password": "string"
+}
+
+2. PRODUCTOS
+
+GET /productos
+Descripción: Obtiene la lista de productos
+
+POST /productos
+Descripción: Agrega un nuevo producto
+Body:
+{
+  "nombre": "string",
+  "precio": number
+}
+
+3. CARRITO
+
+POST /carrito
+Descripción: Agrega un producto al carrito
+Body:
+{
+  "producto_id": number,
+  "cantidad": number
+}
+
+GET /carrito
+Descripción: Obtiene los productos del carrito
+
+4. PEDIDOS
+
+POST /pedido
+Descripción: Crea un pedido
+Body:
+{
+  "total": number
+}
+
+GET /pedido
+Descripción: Obtiene la lista de pedidos

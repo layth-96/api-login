@@ -78,3 +78,84 @@ app.post("/login", (req, res) => {
 app.listen(3001, () => {
   console.log("Servidor corriendo en http://localhost:3001");
 });
+// 🟣 OBTENER PRODUCTOS
+app.get("/productos", (req, res) => {
+  const sql = "SELECT * FROM productos";
+
+  db.query(sql, (err, result) => {
+    if (err) {
+      return res.json({ mensaje: "Error al obtener productos" });
+    }
+    return res.json(result);
+  });
+});
+
+
+// 🟣 AGREGAR PRODUCTO
+app.post("/productos", (req, res) => {
+  const { nombre, precio } = req.body;
+
+  const sql = "INSERT INTO productos (nombre, precio) VALUES (?, ?)";
+
+  db.query(sql, [nombre, precio], (err, result) => {
+    if (err) {
+      return res.json({ mensaje: "Error al agregar producto" });
+    }
+    return res.json({ mensaje: "Producto agregado correctamente" });
+  });
+});
+
+
+// 🟣 AGREGAR AL CARRITO
+app.post("/carrito", (req, res) => {
+  const { producto_id, cantidad } = req.body;
+
+  const sql = "INSERT INTO carrito (producto_id, cantidad) VALUES (?, ?)";
+
+  db.query(sql, [producto_id, cantidad], (err, result) => {
+    if (err) {
+      return res.json({ mensaje: "Error al agregar al carrito" });
+    }
+    return res.json({ mensaje: "Producto agregado al carrito" });
+  });
+});
+
+
+// 🟣 VER CARRITO
+app.get("/carrito", (req, res) => {
+  const sql = "SELECT * FROM carrito";
+
+  db.query(sql, (err, result) => {
+    if (err) {
+      return res.json({ mensaje: "Error al obtener carrito" });
+    }
+    return res.json(result);
+  });
+});
+
+// 🟣 CREAR PEDIDO
+app.post("/pedido", (req, res) => {
+  const { total } = req.body;
+
+  const sql = "INSERT INTO pedidos (total) VALUES (?)";
+
+  db.query(sql, [total], (err, result) => {
+    if (err) {
+      return res.json({ mensaje: "Error al crear pedido" });
+    }
+    return res.json({ mensaje: "Pedido creado correctamente" });
+  });
+});
+
+
+// 🟣 VER PEDIDOS
+app.get("/pedido", (req, res) => {
+  const sql = "SELECT * FROM pedidos";
+
+  db.query(sql, (err, result) => {
+    if (err) {
+      return res.json({ mensaje: "Error al obtener pedidos" });
+    }
+    return res.json(result);
+  });
+});
